@@ -1,0 +1,93 @@
+﻿@model LibrarySite.BusinessLogic.Models.Book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublishDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        @foreach (ModelState modelState in ViewData.ModelState.Values)
+        {
+            foreach (ModelError error in modelState.Errors)
+            {
+                <dd>
+                    <p style="color: red; font-size: 20px;">@error.ErrorMessage</p>
+                </dd>
+            }
+        }
+
+        <dd>
+            @if (Model.BorrowedBy == null)
+            {
+                using (Html.BeginForm("BorrowBook", "Home", FormMethod.Post))
+                {
+                    <input name="bookId" class="hidden" value="@Model.Id" />
+                    <input name="username" />
+                    <button type="submit" class="btn btn-success">Borrow the book</button>
+                }
+            }
+            else
+            {
+                <p>Book borrowed by: <strong>@Model.BorrowedBy.FullName</strong></p>
+            }
+        </dd>
+
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
