@@ -1,7 +1,7 @@
 ﻿using LibrarySite.BusinessLogic.Models;
 using System.Collections.Generic;
 
-namespace LibrarySite.BusinessLogic
+namespace LibrarySite.BusinessLogic.Services
 {
     public interface IBookService
     {

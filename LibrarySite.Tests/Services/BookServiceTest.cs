@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LibrarySite.BusinessLogic;
+using LibrarySite.BusinessLogic.Services;
 using LibrarySite.BusinessLogic.Models;
 
 namespace LibrarySite.Tests.Services

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LibrarySite.BusinessLogic
+namespace LibrarySite.BusinessLogic.Services
 {
     public class UserService : IUserService
     {
@@ -10,16 +10,18 @@ namespace LibrarySite.BusinessLogic
 
         public User GetOrCreate(string fullName)
         {
-            if (string.IsNullOrEmpty(fullName))
+            var sanitizedName = fullName.Trim();
+
+            if (string.IsNullOrEmpty(sanitizedName))
             {
                 throw new System.ArgumentNullException();
             }
 
-            var user = _users.FirstOrDefault(x => x.FullName == fullName);
+            var user = _users.FirstOrDefault(x => x.FullName == sanitizedName);
 
             if (user == null)
             {
-                user = new User { FullName = fullName };
+                user = new User { FullName = sanitizedName };
                 _users.Add(user);
             }
 

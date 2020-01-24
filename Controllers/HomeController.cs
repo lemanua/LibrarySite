@@ -1,4 +1,4 @@
-﻿using LibrarySite.BusinessLogic;
+﻿using LibrarySite.BusinessLogic.Services;
 using System;
 using System.Web.Mvc;
 
@@ -35,14 +35,14 @@ namespace LibrarySite.Controllers
         [HttpPost]
         public ActionResult BorrowBook(string username, string bookId)
         {
-            if (string.IsNullOrEmpty(username))
-            {
-                ModelState.AddModelError(nameof(username), "User can't be empty");
-            }
-            else
+            try
             {
                 var user = _userService.GetOrCreate(username);
                 _bookService.BorrowBook(bookId, user);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(nameof(username), "Error occured during borrowing the book.");
             }
 
             return View(nameof(Details), _bookService.GetBookById(bookId));

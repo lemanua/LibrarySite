@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LibrarySite.BusinessLogic
+namespace LibrarySite.BusinessLogic.Services
 {
     public class BookService : IBookService
     {

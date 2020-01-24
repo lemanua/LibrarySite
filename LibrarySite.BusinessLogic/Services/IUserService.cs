@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace LibrarySite.BusinessLogic
+namespace LibrarySite.BusinessLogic.Services
 {
     public interface IUserService
     {
